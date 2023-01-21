@@ -3,11 +3,10 @@ import { Box, Button, Card, CardContent, CardMedia, Stack, Typography } from "@m
 import React from "react"
 
 export const MovieCard = ({ movie }) => {
-  console.log(movie)
   const { Title, Runtime, Genre, Plot, Poster, imdbRating } = movie
   return (
     <Card sx={{ display: "flex", mb: 4 }}>
-      <CardMedia component='img' sx={{ width: 151 }} image={Poster} alt={Title} />
+      <CardMedia component='img' sx={{ width: 200 }} image={Poster} alt={Title} />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
           <Stack direction='column' spacing={2}>

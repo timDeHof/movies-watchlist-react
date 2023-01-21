@@ -1,51 +1,33 @@
-import { InputBase, styled } from "@mui/material"
+import { Divider, IconButton, InputBase, Paper } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
-import React from "react"
+import { fetchMovies } from "../utils/utils"
+import React, { useState } from "react"
 
-const Search = styled("div")(({ theme }) => ({
-  position: "absolute",
-  bottom: "-10px",
-  left: "50%",
-  transform: "translateX(-50%)",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: "#fff",
-  width: "60%",
-  boxShadow: "5px 5px 5px 0px rgba(0,0,0,0.5)",
-  [theme.breakpoints.up("sm")]: {
-    width: "30%",
-  },
-}))
+export const Searchbar = ({ setMovies }) => {
+  const [searchTerm, setSearchTerm] = useState("")
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}))
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const data = await fetchMovies(searchTerm)
+    setMovies(data)
+    setSearchTerm("")
+  }
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "disabled",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}))
-export const Searchbar = () => {
   return (
-    <Search>
-      <SearchIconWrapper>
-        <SearchIcon color='disabled' />
-      </SearchIconWrapper>
-      <StyledInputBase placeholder='Search…' inputProps={{ "aria-label": "search" }} />
-    </Search>
+    <Paper
+      component='form'
+      sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}>
+      <InputBase
+        sx={{ ml: 1, flex: 1 }}
+        placeholder='Search Movies'
+        value={searchTerm}
+        inputProps={{ "aria-label": "search Movies" }}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <Divider sx={{ height: 28, m: 0.5 }} orientation='vertical' />
+      <IconButton color='primary' sx={{ p: "10px" }} aria-label='search' onClick={handleSubmit}>
+        <SearchIcon />
+      </IconButton>
+    </Paper>
   )
 }

@@ -1,10 +1,8 @@
 import { Box } from "@mui/material"
 import React from "react"
 import { MovieCard } from "../components"
-// @ts-ignore
-import movies from "../data.json"
 
-export const Movieslist = () => {
+export const Movieslist = ({ movies }) => {
   return (
     <Box flex={4} p={2}>
       <Box

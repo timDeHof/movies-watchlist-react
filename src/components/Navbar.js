@@ -19,7 +19,7 @@ const StyledNavBar = styled(AppBar)({
   backgroundSize: "cover",
   backgroundPosition: "center 25%",
 })
-export const Navbar = () => {
+export const Navbar = ({ setMovies }) => {
   return (
     <StyledNavBar position='sticky'>
       <Toolbar
@@ -42,7 +42,7 @@ export const Navbar = () => {
             Find Your Films
           </Typography>
         </Stack>
-        <Searchbar />
+        <Searchbar setMovies={setMovies} />
         <Tooltip title='Watchlist'>
           <IconButton color='inherit'>
             <Badge badgeContent={4} color='primary'>
