@@ -12,7 +12,7 @@ export const Movieslist = ({ movies }) => {
           alignItems: "center",
           margin: "0 auto",
           height: "auto",
-          width: "35%",
+          width: { xs: "100%", sm: "35%" },
         }}>
         {movies.map((movie, index) => (
           <MovieCard

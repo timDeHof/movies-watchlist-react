@@ -10,7 +10,6 @@ import {
 } from "@mui/material"
 import { Theaters, Movie } from "@mui/icons-material"
 import React from "react"
-import { Searchbar } from "./Searchbar"
 const StyledNavBar = styled(AppBar)({
   backgroundImage:
     "url(https://images.unsplash.com/photo-1628432136678-43ff9be34064?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=963&q=80)",
@@ -19,7 +18,7 @@ const StyledNavBar = styled(AppBar)({
   backgroundSize: "cover",
   backgroundPosition: "center 25%",
 })
-export const Navbar = ({ setMovies }) => {
+export const Navbar = () => {
   return (
     <StyledNavBar position='sticky'>
       <Toolbar
@@ -42,7 +41,7 @@ export const Navbar = ({ setMovies }) => {
             Find Your Films
           </Typography>
         </Stack>
-        <Searchbar setMovies={setMovies} />
+
         <Tooltip title='Watchlist'>
           <IconButton color='inherit'>
             <Badge badgeContent={4} color='primary'>
