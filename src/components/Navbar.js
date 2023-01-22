@@ -10,6 +10,7 @@ import {
 } from "@mui/material"
 import { Theaters, Movie } from "@mui/icons-material"
 import React from "react"
+import { Link, useLocation } from "react-router-dom"
 const StyledNavBar = styled(AppBar)({
   backgroundImage:
     "url(https://images.unsplash.com/photo-1628432136678-43ff9be34064?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=963&q=80)",
@@ -19,6 +20,7 @@ const StyledNavBar = styled(AppBar)({
   backgroundPosition: "center 25%",
 })
 export const Navbar = () => {
+  const { pathname } = useLocation()
   return (
     <StyledNavBar position='sticky'>
       <Toolbar
@@ -41,14 +43,21 @@ export const Navbar = () => {
             Find Your Films
           </Typography>
         </Stack>
-
-        <Tooltip title='Watchlist'>
-          <IconButton color='inherit'>
-            <Badge badgeContent={4} color='primary'>
+        {pathname === "/watchlist" ? (
+          <Tooltip title='Find more movies'>
+            <IconButton color='inherit' component={Link} to='/'>
               <Movie />
-            </Badge>
-          </IconButton>
-        </Tooltip>
+            </IconButton>
+          </Tooltip>
+        ) : (
+          <Tooltip title='Watchlist'>
+            <IconButton color='inherit' component={Link} to='/watchlist'>
+              <Badge badgeContent={4} color='primary'>
+                <Movie />
+              </Badge>
+            </IconButton>
+          </Tooltip>
+        )}
       </Toolbar>
     </StyledNavBar>
   )
